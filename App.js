@@ -22,34 +22,34 @@ import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Feather from "@expo/vector-icons/Feather";
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const tamaguiConfig = createTamagui(config);
 const story = [
   {
-    logo :"java" 
+    logo: "java",
   },
   {
-    logo :"react"
+    logo: "react",
   },
   {
-    logo :"500px"
+    logo: "500px",
   },
   {
-    logo :"airbnb"
+    logo: "airbnb",
   },
   {
-    logo :"amazon"
+    logo: "amazon",
   },
   {
-    logo :"ankh"
+    logo: "ankh",
   },
   {
-    logo :"battle-net"
+    logo: "battle-net",
   },
-  
-]
+];
 const FEEDS_DATA = [
   {
     username: "Levi Ackerman",
@@ -145,10 +145,11 @@ const App = () => {
                     Instagram
                   </Text>
                   <AntDesign
+                    padding={5}
                     name="down"
-                    size={24}
+                    size={18}
                     color="black"
-                    marginTop={20}
+                    marginTop={18}
                   />
                 </XStack>
                 <XStack alignItems="center" paddingRight={10} gap={16}>
@@ -165,11 +166,24 @@ const App = () => {
                   gap={5}
                 >
                   {story.map((data) => {
-                return (
-                  <View padding={8} borderBlockColor={"black"} borderWidth={2} borderRadius={64} paddingInline={10} width={90} alignItems="center">
-                    <FontAwesome5 name={data.logo} size={60} color="black"/>
-                  </View>
-                )})}
+                    return (
+                      <View
+                        padding={8}
+                        borderBlockColor={"black"}
+                        borderWidth={2}
+                        borderRadius={64}
+                        paddingInline={10}
+                        width={90}
+                        alignItems="center"
+                      >
+                        <FontAwesome5
+                          name={data.logo}
+                          size={60}
+                          color="black"
+                        />
+                      </View>
+                    );
+                  })}
                 </XStack>
               </ScrollView>
               <XStack
@@ -179,8 +193,11 @@ const App = () => {
                 justifyContent="space-between"
               >
                 <View borderWidth={2} borderRadius={24} padding={5}>
-
-                <MaterialCommunityIcons name="check" size={24} color="black" />
+                  <MaterialCommunityIcons
+                    name="check"
+                    size={24}
+                    color="black"
+                  />
                 </View>
                 <Text color={"gray"}>
                   You've seen all new posts from the pass days from account you
@@ -221,7 +238,7 @@ const App = () => {
                         </Text>
                       </XStack>
                       <XStack alignItems="center">
-                        <Button>
+                        <Button backgroundColor={"skyblue"}>
                           <Label>Follow</Label>
                         </Button>
                         <Entypo
@@ -295,11 +312,15 @@ const App = () => {
           padding={10}
           zIndex={1000}
         >
-          <Text color={"black"}>H</Text>
-          <Text color={"black"}>S</Text>
-          <Text color={"black"}>+</Text>
-          <Text color={"black"}>V</Text>
-          <Text color={"black"}>P</Text>
+          <Entypo name="home" size={24} color="black" />
+          <FontAwesome5 name="search" size={30} color="black" />
+          <FontAwesome name="plus-square" size={30} color="black" />
+          <Entypo name="folder-video" size={30} color="black" />
+          <MaterialCommunityIcons
+            name="face-man-profile"
+            size={24}
+            color="black"
+          />
         </XStack>
       </TamaguiProvider>
     </SafeAreaView>
