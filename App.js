@@ -26,6 +26,8 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
+
+SplashScreen.preventAutoHideAsync();
 const tamaguiConfig = createTamagui(config);
 const story = [
   {
@@ -122,6 +124,20 @@ function formatDate(timestamp) {
   return date.toLocaleDateString("en-US", options);
 }
 const App = () => {
+  const [loaded, error] = useFonts({
+    'poppins-black': require('./assets/fonts/Poppins-Regular.ttf'),
+    'logo': require('./assets/fonts/StyleScript-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TamaguiProvider config={tamaguiConfig}>
@@ -139,7 +155,7 @@ const App = () => {
                     textAlign="center"
                     fontSize={32}
                     padding={4}
-                    fontFamily="styleScript"
+                    fontFamily="logo"
                     color={"black"}
                   >
                     Instagram
@@ -200,7 +216,7 @@ const App = () => {
                     color="black"
                   />
                 </View>
-                <Text color={"gray"}>
+                <Text color={"gray"} fontFamily={"poppins-black"}>
                   You've seen all new posts from the pass days from account you
                   follow
                 </Text>
