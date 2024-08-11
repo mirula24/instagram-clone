@@ -13,13 +13,16 @@
     "@tamagui/babel-plugin": "^1.108.2",
     "@tamagui/config": "^1.108.2",
     "expo": "~51.0.26",
+    "expo-font": "~12.0.9",
+    "expo-linear-gradient": "~13.0.2",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
     "react-native-web": "~0.19.10",
+    "splash-screen": "^4.0.1",
     "tamagui": "^1.108.2",
-    "expo-linear-gradient": "~13.0.2"
+    "expo-splash-screen": "~0.27.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

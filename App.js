@@ -1,6 +1,8 @@
 import { config } from "@tamagui/config";
-import { SafeAreaView ,Text as Textreact } from "react-native";
-import { FlatList } from "react-native-web";
+import { SafeAreaView, Text as Textreact } from "react-native";
+import { useEffect } from "react";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import {
   TamaguiProvider,
   createTamagui,
@@ -13,14 +15,41 @@ import {
   Circle,
   Button,
   fullscreenStyle,
+  Label,
 } from "tamagui";
 import { LinearGradient } from "expo-linear-gradient";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const tamaguiConfig = createTamagui(config);
+const story = [
+  {
+    logo :"java" 
+  },
+  {
+    logo :"react"
+  },
+  {
+    logo :"500px"
+  },
+  {
+    logo :"airbnb"
+  },
+  {
+    logo :"amazon"
+  },
+  {
+    logo :"ankh"
+  },
+  {
+    logo :"battle-net"
+  },
+  
+]
 const FEEDS_DATA = [
   {
     username: "Levi Ackerman",
@@ -87,6 +116,11 @@ const FEEDS_DATA = [
     },
   },
 ];
+function formatDate(timestamp) {
+  const date = new Date(timestamp);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return date.toLocaleDateString("en-US", options);
+}
 const App = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -94,20 +128,32 @@ const App = () => {
         <ScrollView>
           <YStack>
             <View>
-              <XStack justifyContent="space-between" backgroundColor={"red"}>
+              <XStack
+                justifyContent="space-between"
+                backgroundColor={"white"}
+                marginTop={34}
+                alignItems="center"
+              >
                 <XStack>
                   <Text
                     textAlign="center"
                     fontSize={32}
                     padding={4}
-                    fontFamily={"StyleScript-Regular"}
+                    fontFamily="styleScript"
+                    color={"black"}
                   >
                     Instagram
                   </Text>
+                  <AntDesign
+                    name="down"
+                    size={24}
+                    color="black"
+                    marginTop={20}
+                  />
                 </XStack>
-                <XStack alignItems="center" paddingRight={8} gap={10}>
-                  <Text fontSize={20}>❤️</Text>
-                  <Text fontSize={20}>💀</Text>
+                <XStack alignItems="center" paddingRight={10} gap={16}>
+                  <AntDesign name="heart" size={28} color="black" />
+                  <Entypo name="notification" size={28} color="black" />
                 </XStack>
               </XStack>
               <ScrollView horizontal={true}>
@@ -115,17 +161,15 @@ const App = () => {
                   flexDirection={"row"}
                   height={100}
                   alignItems="center"
-                  backgroundColor={"blue"}
+                  backgroundColor={"white"}
+                  gap={5}
                 >
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
-                  <Text fontSize={64}>😅</Text>
+                  {story.map((data) => {
+                return (
+                  <View padding={8} borderBlockColor={"black"} borderWidth={2} borderRadius={64} paddingInline={10} width={90} alignItems="center">
+                    <FontAwesome5 name={data.logo} size={60} color="black"/>
+                  </View>
+                )})}
                 </XStack>
               </ScrollView>
               <XStack
@@ -134,7 +178,10 @@ const App = () => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <Text padding={5}>✅</Text>
+                <View borderWidth={2} borderRadius={24} padding={5}>
+
+                <MaterialCommunityIcons name="check" size={24} color="black" />
+                </View>
                 <Text color={"gray"}>
                   You've seen all new posts from the pass days from account you
                   follow
@@ -169,12 +216,14 @@ const App = () => {
                             height: 50,
                           }}
                         />
-                        <Text paddingLeft={5} color={"red"}>
+                        <Text paddingLeft={5} color={"black"}>
                           {post.username}
                         </Text>
                       </XStack>
                       <XStack alignItems="center">
-                        <Button>Follow</Button>
+                        <Button>
+                          <Label>Follow</Label>
+                        </Button>
                         <Entypo
                           name="dots-three-vertical"
                           size={24}
@@ -203,24 +252,37 @@ const App = () => {
                       </XStack>
                     </XStack>
                     <XStack backgroundColor={"white"} paddingLeft={5}>
-                      <Text color={'black'} numberOfLines={2}>{post.feed.totalLikes} Likes</Text>
+                      <Text color={"black"} numberOfLines={2}>
+                        {post.feed.totalLikes} Likes
+                      </Text>
                     </XStack>
                     <YStack backgroundColor={"white"} paddingLeft={5}>
-                      <Textreact numberOfLines={2} style={{color:"black"}}>
-                        <span style={{paddingRight: 5, fontSize:16 , fontStyle:"bold"}}>{post.username}</span>
-                        {post.feed.caption}</Textreact>
-                      <Textreact>
+                      <Text>
+                        <Text
+                          style={{
+                            fontWeight: "bold",
+                            marginRight: 5,
+                            color: "black",
+                          }}
+                        >
+                          {post.username}
+                        </Text>
+                        <Text numberOfLines={2} style={{ color: "black" }}>
+                          {post.feed.caption}
+                        </Text>
+                      </Text>
+                      <Text color={"black"}>
                         View all {post.feed.totalComments}
-                      </Textreact>
+                      </Text>
+                      <Text color={"black"}>
+                        {formatDate(post.feed.postDate)}
+                      </Text>
                     </YStack>
                   </View>
                 );
               })}
             </View>
-            <View>
-              <br></br>
-              <br></br>
-            </View>
+            <View height={50}></View>
           </YStack>
         </ScrollView>
         <XStack
