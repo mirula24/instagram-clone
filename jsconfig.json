@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "commonjs",
+      "jsx": "react-jsx",
+      "allowJs": true,
+      "checkJs": true,
+      "allowSyntheticDefaultImports": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true
+    },
+    "exclude": ["node_modules", "build"]
+  }
