@@ -168,12 +168,13 @@ const App = () => {
                   {story.map((data) => {
                     return (
                       <View
-                        padding={8}
+                        padding={10}
                         borderBlockColor={"black"}
-                        borderWidth={2}
+                        borderWidth={3}
                         borderRadius={64}
                         paddingInline={10}
                         width={90}
+                        margin={4}
                         alignItems="center"
                       >
                         <FontAwesome5
