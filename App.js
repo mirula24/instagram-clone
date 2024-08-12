@@ -26,7 +26,6 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-
 SplashScreen.preventAutoHideAsync();
 const tamaguiConfig = createTamagui(config);
 const story = [
@@ -125,8 +124,8 @@ function formatDate(timestamp) {
 }
 const App = () => {
   const [loaded, error] = useFonts({
-    'poppins-black': require('./assets/fonts/Poppins-Regular.ttf'),
-    'logo': require('./assets/fonts/StyleScript-Regular.ttf'),
+    "poppins-black": require("./assets/fonts/Poppins-Regular.ttf"),
+    logo: require("./assets/fonts/StyleScript-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -176,29 +175,32 @@ const App = () => {
               <ScrollView horizontal={true}>
                 <XStack
                   flexDirection={"row"}
-                  height={100}
+                  height={120}
                   alignItems="center"
                   backgroundColor={"white"}
                   gap={5}
                 >
                   {story.map((data) => {
                     return (
-                      <View
-                        padding={10}
-                        borderBlockColor={"black"}
-                        borderWidth={3}
-                        borderRadius={64}
-                        paddingInline={10}
-                        width={90}
-                        margin={4}
-                        alignItems="center"
-                      >
-                        <FontAwesome5
-                          name={data.logo}
-                          size={60}
-                          color="black"
-                        />
-                      </View>
+                      <YStack justifyContent="center" alignItems="center">
+                        <View
+                          padding={10}
+                          borderBlockColor={"black"}
+                          borderWidth={3}
+                          borderRadius={64}
+                          paddingInline={10}
+                          width={90}
+                          margin={4}
+                          alignItems="center"
+                        >
+                          <FontAwesome5
+                            name={data.logo}
+                            size={60}
+                            color="black"
+                          />
+                        </View>
+                        <Text color={"black"}>{data.logo}</Text>
+                      </YStack>
                     );
                   })}
                 </XStack>
